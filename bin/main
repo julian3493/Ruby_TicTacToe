@@ -1,2 +1,14 @@
 #!/usr/bin/env ruby
-puts 'Hello World!'
+
+puts "Player 1 please write your name"
+p1 = gets.chomp
+puts "Player 2 please write your name"
+p2 = gets.chomp
+
+puts "Board"
+puts "Player 1 it's your turn please choose a valid space"
+move1=gets.chomp
+puts "Board"
+puts "Player 2 it's your turn please choose a valid space"
+move2=gets.chomp
+puts "Board"
