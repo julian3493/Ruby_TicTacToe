@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-puts "Player 1 please write your name"
+puts 'Player 1 please write your name'
 p1 = gets.chomp
-puts "Player 2 please write your name"
+puts 'Player 2 please write your name'
 p2 = gets.chomp
 
 game = true
@@ -22,6 +22,7 @@ while game
 
   if winner
     puts "#{p1} is the winner"
+    #change game to false
     break
   end
   
@@ -37,6 +38,7 @@ while game
 
   if winner
     puts "#{p2} is the winner"
+    #change game to false
     break
   end
   game = false
