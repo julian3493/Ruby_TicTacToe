@@ -3,7 +3,6 @@
 game = true
 winner = false
 
-
 puts 'Player 1 please write your name'
 p1 = gets.chomp
 puts 'Player 2 please write your name'
@@ -17,7 +16,7 @@ while game
   puts "#{p1} it's your turn please choose a valid space"
   move1 = gets.chomp.to_i
 
-  board[move1-1] = "X"
+  board[move1 - 1] = 'X'
 
   puts "#{p1} has selected #{move1}"
   print board
@@ -27,7 +26,6 @@ while game
     # change game to false
     break
   end
-  
   puts "#{p2} it's your turn please choose a valid space"
   move2 = gets.chomp.to_i
 
@@ -36,7 +34,7 @@ while game
     move2 = gets.chomp.to_i
   end
 
-  board[move2-1] = "O"
+  board[move2 - 1] = 'O'
 
   puts "#{p2} has selected #{move2}"
   print board
@@ -48,5 +46,3 @@ while game
   end
   game = false
 end
-
-
