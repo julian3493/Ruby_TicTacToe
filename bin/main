@@ -22,10 +22,9 @@ while game
 
   if winner
     puts "#{p1} is the winner"
-    #change game to false
+    # change game to false
     break
   end
-  
   puts "#{p2} it's your turn please choose a valid space"
   move2 = gets.chomp
 
@@ -38,7 +37,7 @@ while game
 
   if winner
     puts "#{p2} is the winner"
-    #change game to false
+    # change game to false
     break
   end
   game = false
