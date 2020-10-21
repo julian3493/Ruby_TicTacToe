@@ -5,10 +5,16 @@ p1 = gets.chomp
 puts "Player 2 please write your name"
 p2 = gets.chomp
 
-puts "Board"
-puts "Player 1 it's your turn please choose a valid space"
-move1=gets.chomp
-puts "Board"
-puts "Player 2 it's your turn please choose a valid space"
-move2=gets.chomp
-puts "Board"
+puts "#{p1} is X and #{p2} is O"
+board = [%w[1 2 3], %w[4 5 6], %w[7 8 9]]
+print board
+
+puts "#{p1} it's your turn please choose a valid space"
+move1 = gets.chomp
+puts "#{p1} has selected #{move1}"
+print board
+
+puts "#{p2} it's your turn please choose a valid space"
+move2 = gets.chomp
+puts "#{p2} has selected #{move2}"
+print board
