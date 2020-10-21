@@ -1,20 +1,37 @@
 #!/usr/bin/env ruby
 
+game = true
+
+
 puts 'Player 1 please write your name'
 p1 = gets.chomp
 puts 'Player 2 please write your name'
 p2 = gets.chomp
 
-puts "#{p1} is X and #{p2} is O"
-board = [%w[1 2 3], %w[4 5 6], %w[7 8 9]]
-print board
+while game
+  puts "#{p1} is X and #{p2} is O"
+  board = [%w[1 2 3],
+           %w[4 5 6],
+           %w[7 8 9]]
+  print board
 
-puts "#{p1} it's your turn please choose a valid space"
-move1 = gets.chomp
-puts "#{p1} has selected #{move1}"
-print board
+  puts "#{p1} it's your turn please choose a valid space"
+  move1 = gets.chomp
 
-puts "#{p2} it's your turn please choose a valid space"
-move2 = gets.chomp
-puts "#{p2} has selected #{move2}"
-print board
+  board[0][0] = move1
+  puts "#{p1} has selected #{move1}"
+  print board
+  
+  puts "#{p2} it's your turn please choose a valid space"
+  move2 = gets.chomp
+
+  while move1 == move2
+    puts "#{p2} it's your turn please choose a valid space other than #{move1}"
+    move2 = gets.chomp
+  end
+  puts "#{p2} has selected #{move2}"
+  print board
+  game = false
+end
+
+
