@@ -1,65 +1,89 @@
 #!/usr/bin/env ruby
 
-puts 'Player 1 please write your name'
-p1 = gets.chomp
-puts 'Player 2 please write your name'
-p2 = gets.chomp
+require_relative '../lib/players.rb'
+require_relative '../lib/game.rb'
 
-game = true
-winner = false
-draw = false
+def print_board(arr)
+  puts ' '
+  puts "| #{arr[0]} || #{arr[1]} || #{arr[2]} |"
+  puts "| #{arr[3]} || #{arr[4]} || #{arr[5]} |"
+  puts "| #{arr[6]} || #{arr[7]} || #{arr[8]} |"
+  puts ' '
+end
 
-while game
-  puts "#{p1} is X and #{p2} is O"
-  board = %w[1 2 3 4 5 6 7 8 9]
-  puts '| 1 || 2 || 3 |'
-  puts '| 4 || 5 || 6 |'
-  puts '| 7 || 8 || 9 |'
+play_again = true
 
-  puts "#{p1} it's your turn please choose a valid space"
-  move1 = gets.chomp.to_i
+while play_again
+  puts 'Welcome to Tic Tac Toe'
+  puts 'Player 1 please write your name'
+  p1_name = gets.chomp
+  puts 'Player 2 please write your name'
+  p2_name = gets.chomp
 
-  board[move1 - 1] = 'X'
+  p1 = Player.new(p1_name, 'X')
+  p2 = Player.new(p2_name, 'O')
+  game = Game.new
+  puts "#{p1.name} is X and #{p2.name} is O"
+  while game.game_on
+    print_board(game.board)
 
-  puts "#{p1} has selected #{move1}"
-  puts '| 1 || 2 || 3 |'
-  puts '| 4 || 5 || 6 |'
-  puts '| 7 || 8 || 9 |'
+    while p1.valid == false
+      puts "#{p1.name} it's your turn please choose a valid space"
+      move1 = gets.chomp
+      p1.valid = game.getMove(move1, p1.mark)
+      p2.valid = false
+    end
 
-  if winner
-    puts "#{p1} is the winner"
-    # change game to false
-    break
+    puts "#{p1.name} has selected #{move1}"
+    print_board(game.board)
+
+    if game.is_winner
+      puts "#{p1.name} is the winner"
+      @game_on = false
+      break
+    end
+
+    if game.is_draw
+      puts "It's a draw"
+      game.game_on = false
+      break
+    end
+
+    while p2.valid == false
+      puts "#{p2.name} it's your turn please choose a valid space"
+      move2 = gets.chomp
+      p2.valid = game.getMove(move2, p2.mark)
+      p1.valid = false
+    end
+
+    while move1 == move2
+      puts "#{p2.name} it's your turn please choose a valid space other than #{move1}"
+      move2 = gets.chomp
+      game.getMove(move2, p2.mark)
+    end
+
+    puts "#{p2.name} has selected #{move2}"
+    print_board(game.board)
+
+    if game.is_winner
+      puts "#{p2.name} is the winner"
+      @game_on = false
+      break
+    end
+
+    if game.is_draw
+      puts "It's a draw"
+      game.game_on = false
+      break
+    end
   end
-  if draw
-    puts "It's a draw"
-    # change game to false
-    break
+  puts 'Do you want to play again? y:Yes n:No'
+  p_again = gets.chomp
+  if p_again == 'y'
+    play_again = true
+    game = Game.new
+  else
+    play_again = false
+    puts 'Good bye, Thank you for playing'
   end
-  puts "#{p2} it's your turn please choose a valid space"
-  move2 = gets.chomp.to_i
-
-  while move1 == move2
-    puts "#{p2} it's your turn please choose a valid space other than #{move1}"
-    move2 = gets.chomp.to_i
-  end
-
-  board[move2 - 1] = 'O'
-
-  puts "#{p2} has selected #{move2}"
-  puts '| 1 || 2 || 3 |'
-  puts '| 4 || 5 || 6 |'
-  puts '| 7 || 8 || 9 |'
-
-  if winner
-    puts "#{p1} is the winner"
-    # change game to false
-    break
-  end
-  if draw
-    puts "It's a draw"
-    # change game to false
-    break
-  end
-  game = false
 end
