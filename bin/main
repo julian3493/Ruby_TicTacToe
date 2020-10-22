@@ -18,7 +18,6 @@ class Game
     @winner = false
     @draw = false
     @board = %w[1 2 3 4 5 6 7 8 9]
-    # @win_option = [%w[1 2 3], %w[4 5 6], %w[7 8 9], %w[1 5 9], %w[3 5 7], %w[1 4 7], %w[2 5 8], %w[3 6 9]]
   end
   def getMove(move, mark)
     if board.any? { |n| move } && move.to_i != 0
@@ -41,62 +40,89 @@ class Game
     end
   end
 
+  def is_draw
+    if board.all? { |space| space=="X" or space=="O" }
+      @draw = true
+    end
+  end
 end
 
-puts 'Player 1 please write your name'
-p1_name = gets.chomp
-puts 'Player 2 please write your name'
-p2_name = gets.chomp
+def printBoard(arr)
+  puts " "
+  puts "| #{arr[0]} || #{arr[1]} || #{arr[2]} |"
+  puts "| #{arr[3]} || #{arr[4]} || #{arr[5]} |"
+  puts "| #{arr[6]} || #{arr[7]} || #{arr[8]} |"
+  puts " "
+end
 
-p1 = Player.new(p1_name, "X")
-p2 = Player.new(p2_name, "O")
-game = Game.new
-puts "#{p1.name} is X and #{p2.name} is O"
+play_again = true
 
-while game.game_on
-  print game.board
-  while p1.valid == false
-    puts "#{p1.name} it's your turn please choose a valid space"
-    move1 = gets.chomp
-    p1.valid = game.getMove(move1, p1.mark)
-    p2.valid = false
-  end
-  puts "#{p1.name} has selected #{move1}"
-  print game.board
+while play_again
+  puts 'Welcome to Tic Tac Toe'
+  puts 'Player 1 please write your name'
+  p1_name = gets.chomp
+  puts 'Player 2 please write your name'
+  p2_name = gets.chomp
 
-  if game.is_winner
-    puts "#{p1.name} is the winner"
-    @game_on = false
-    break
-  end
-  if game.draw
-    puts "It's a draw"
-    break
-  end
+  p1 = Player.new(p1_name, "X")
+  p2 = Player.new(p2_name, "O")
+  game = Game.new
+  puts "#{p1.name} is X and #{p2.name} is O"
+  while game.game_on
+    printBoard(game.board)
+    while p1.valid == false
+      puts "#{p1.name} it's your turn please choose a valid space"
+      move1 = gets.chomp
+      p1.valid = game.getMove(move1, p1.mark)
+      p2.valid = false
+    end
+    puts "#{p1.name} has selected #{move1}"
+    printBoard(game.board)
 
-  while p2.valid == false
-    puts "#{p2.name} it's your turn please choose a valid space"
-    move2 = gets.chomp
-    p2.valid = game.getMove(move2, p2.mark)
-    p1.valid = false
-  end
-  while move1 == move2
-    puts "#{p2.name} it's your turn please choose a valid space other than #{move1}"
-    move2 = gets.chomp
-    game.getMove(move2, p2.mark)
-  end
+    if game.is_winner
+      puts "#{p1.name} is the winner"
+      @game_on = false
+      break
+    end
+    if game.is_draw
+      puts "It's a draw"
+      game.game_on = false
+      break
+    end
 
-  puts "#{p2.name} has selected #{move2}"
-  print game.board
+    while p2.valid == false
+      puts "#{p2.name} it's your turn please choose a valid space"
+      move2 = gets.chomp
+      p2.valid = game.getMove(move2, p2.mark)
+      p1.valid = false
+    end
+    while move1 == move2
+      puts "#{p2.name} it's your turn please choose a valid space other than #{move1}"
+      move2 = gets.chomp
+      game.getMove(move2, p2.mark)
+    end
 
-  if game.is_winner
-    puts "#{p2.name} is the winner"
-    @game_on = false
-    break
-  end
-  if game.draw
-    puts "It's a draw"
-    break
-  end
+    puts "#{p2.name} has selected #{move2}"
+    printBoard(game.board)
 
+    if game.is_winner
+      puts "#{p2.name} is the winner"
+      @game_on = false
+      break
+    end
+    if game.is_draw
+      puts "It's a draw"
+      game.game_on = false
+      break
+    end
+  end
+  puts "Do you want to play again? y:Yes n:No"
+  p_again = gets.chomp
+  if p_again == 'y'
+    play_again = true
+    game = Game.new
+  else
+    play_again = false
+    puts 'Good bye, Thank you for playing'
+  end
 end
