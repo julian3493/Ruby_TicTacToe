@@ -31,8 +31,6 @@ class Game
   end
 
   def draw?
-    if board.all? { |space| space == 'X' || space == 'O' }
-      @draw = true
-    end
+    @draw = true if board.all? { |space| space == 'X' || space == 'O' }
   end
 end
