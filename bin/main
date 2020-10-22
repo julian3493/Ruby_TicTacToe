@@ -24,13 +24,14 @@ while play_again
   p2 = Player.new(p2_name, 'O')
   game = Game.new
   puts "#{p1.name} is X and #{p2.name} is O"
+
   while game.game_on
     print_board(game.board)
 
     while p1.valid == false
       puts "#{p1.name} it's your turn please choose a valid space"
       move1 = gets.chomp
-      p1.valid = game.getMove(move1, p1.mark)
+      p1.valid = game.get_move(move1, p1.mark)
       p2.valid = false
     end
 
@@ -52,14 +53,8 @@ while play_again
     while p2.valid == false
       puts "#{p2.name} it's your turn please choose a valid space"
       move2 = gets.chomp
-      p2.valid = game.getMove(move2, p2.mark)
+      p2.valid = game.get_move(move2, p2.mark)
       p1.valid = false
-    end
-
-    while move1 == move2
-      puts "#{p2.name} it's your turn please choose a valid space other than #{move1}"
-      move2 = gets.chomp
-      game.getMove(move2, p2.mark)
     end
 
     puts "#{p2.name} has selected #{move2}"
@@ -74,7 +69,7 @@ while play_again
     if game.draw?
       puts "It's a draw"
       game.game_on = false
-      next
+      break
     end
   end
   puts 'Do you want to play again? y:Yes n:No'
