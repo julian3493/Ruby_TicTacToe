@@ -17,15 +17,11 @@ class Game
     @board = %w[1 2 3 4 5 6 7 8 9]
   end
   def getMove(move, mark)
-    if board.any? { |n| move }
+    if board.any? { |n| move } && move.to_i != 0
       board[move.to_i - 1] = mark
     end
   end
 end
-
-game = true
-winner = false
-draw = false
 
 puts 'Player 1 please write your name'
 p1_name = gets.chomp
@@ -66,12 +62,12 @@ while game
   puts "#{p2.name} has selected #{move2}"
   print game.board
 
-  if winner
+  if game.winner
     puts "#{p2.name} is the winner"
     # change game to false
     break
   end
-  if draw
+  if game.draw
     puts "It's a draw"
     # change game to false
     break
