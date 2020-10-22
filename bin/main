@@ -1,4 +1,4 @@
-#!/usr/bin/env 
+#!/usr/bin/env ruby
 
 class Player
   attr_reader :name, :mark
@@ -7,53 +7,67 @@ class Player
     @mark = mark
   end
 end
+
+class Game
+  attr_reader :board, :winner, :draw
+  def initialize
+    @game_on = true
+    @winner = false
+    @draw = false
+    @board = %w[1 2 3 4 5 6 7 8 9]
+  end
+  def getMove(move, mark)
+    if board.any? { |n| move }
+      board[move.to_i - 1] = mark
+    end
+  end
+end
+
 game = true
 winner = false
+draw = false
 
 puts 'Player 1 please write your name'
 p1_name = gets.chomp
-p1= Player.new(p1_name, "X")
 puts 'Player 2 please write your name'
 p2_name = gets.chomp
-p2= Player.new(p2_name, "X")
+
+p1 = Player.new(p1_name, "X")
+p2 = Player.new(p2_name, "O")
+game = Game.new
+puts "#{p1.name} is X and #{p2.name} is O"
+
 while game
-  puts "#{p1.name} is X and #{p2.name} is O"
-  board = %w[1 2 3 4 5 6 7 8 9]
-  print board
-
+  print game.board
   puts "#{p1.name} it's your turn please choose a valid space"
-  move1 = gets.chomp.to_i
-
-  board[move1 - 1] = 'X'
-
+  move1 = gets.chomp
+  game.getMove(move1, p1.mark)
   puts "#{p1.name} has selected #{move1}"
-  print board
+  print game.board
 
-  if winner
-    puts "#{p1} is the winner"
+  if game.winner
+    puts "#{p1.name} is the winner"
     # change game to false
     break
   end
-  if draw
+  if game.draw
     puts "It's a draw"
     # change game to false
     break
   end
-  puts "#{p2} it's your turn please choose a valid space"
-  move2 = gets.chomp.to_i
 
+  puts "#{p2.name} it's your turn please choose a valid space"
+  move2 = gets.chomp
   while move1 == move2
-    puts "#{p2} it's your turn please choose a valid space other than #{move1}"
-    move2 = gets.chomp.to_i
+    puts "#{p2.name} it's your turn please choose a valid space other than #{move1}"
+    move2 = gets.chomp
   end
-
-  board[move2 - 1] = 'O'
-
-  puts "#{p2} has selected #{move2}"
-  print board
+  game.getMove(move2, p2.mark)
+  puts "#{p2.name} has selected #{move2}"
+  print game.board
 
   if winner
-    puts "#{p1} is the winner"
+    puts "#{p2.name} is the winner"
     # change game to false
     break
   end
