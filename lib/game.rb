@@ -9,7 +9,7 @@ class Game
     @board = %w[1 2 3 4 5 6 7 8 9]
   end
 
-  def getMove(move, mark)
+  def get_move(move, mark)
     if board.any? { |n| move == n } && move.to_i != 0
       board[move.to_i - 1] = mark
       true
@@ -18,7 +18,7 @@ class Game
     end
   end
 
-  def is_winner
+  def winner?
     if board[0] == board[1] && board[1] == board[2] || board[3] == board[4] && board[4] == board[5]
       @winner = true
     elsif board[6] == board[7] && board[7] == board[8] || board[0] == board[4] && board[4] == board[8]
@@ -30,8 +30,8 @@ class Game
     end
   end
 
-  def is_draw
-    if board.all? { |space| space == "X" || space == "O" }
+  def draw?
+    if board.all? { |space| space == 'X' || space == 'O' }
       @draw = true
     end
   end

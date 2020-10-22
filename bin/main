@@ -37,13 +37,13 @@ while play_again
     puts "#{p1.name} has selected #{move1}"
     print_board(game.board)
 
-    if game.is_winner
+    if game.winner?
       puts "#{p1.name} is the winner"
       @game_on = false
       break
     end
 
-    if game.is_draw
+    if game.draw?
       puts "It's a draw"
       game.game_on = false
       break
@@ -65,16 +65,16 @@ while play_again
     puts "#{p2.name} has selected #{move2}"
     print_board(game.board)
 
-    if game.is_winner
+    if game.winner?
       puts "#{p2.name} is the winner"
       @game_on = false
       break
     end
 
-    if game.is_draw
+    if game.draw?
       puts "It's a draw"
       game.game_on = false
-      break
+      next
     end
   end
   puts 'Do you want to play again? y:Yes n:No'
