@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
 
 class Player
+  attr_accessor :valid
   attr_reader :name, :mark
   def initialize(name, mark)
     @name = name
     @mark = mark
+    @valid = false
   end
 end
 
@@ -15,12 +17,21 @@ class Game
     @winner = false
     @draw = false
     @board = %w[1 2 3 4 5 6 7 8 9]
+    @win_option = [%w[1 2 3], %w[4 5 6], %w[7 8 9], %w[1 5 9], %w[3 5 7], %w[1 4 7], %w[2 5 8], %w[3 6 9]]
   end
   def getMove(move, mark)
     if board.any? { |n| move } && move.to_i != 0
       board[move.to_i - 1] = mark
+      true
+    else
+      false
     end
   end
+
+  def is_winner
+    
+  end
+
 end
 
 puts 'Player 1 please write your name'
@@ -35,9 +46,12 @@ puts "#{p1.name} is X and #{p2.name} is O"
 
 while game
   print game.board
-  puts "#{p1.name} it's your turn please choose a valid space"
-  move1 = gets.chomp
-  game.getMove(move1, p1.mark)
+  
+  while p1.valid == false
+    puts "#{p1.name} it's your turn please choose a valid space"
+    move1 = gets.chomp
+    p1.valid = game.getMove(move1, p1.mark)
+  end
   puts "#{p1.name} has selected #{move1}"
   print game.board
 
@@ -52,13 +66,18 @@ while game
     break
   end
 
-  puts "#{p2.name} it's your turn please choose a valid space"
-  move2 = gets.chomp
+
+  while p2.valid == false
+    puts "#{p2.name} it's your turn please choose a valid space"
+    move2 = gets.chomp
+    p2.valid = game.getMove(move2, p2.mark)
+  end
   while move1 == move2
     puts "#{p2.name} it's your turn please choose a valid space other than #{move1}"
     move2 = gets.chomp
+    game.getMove(move2, p2.mark)
   end
-  game.getMove(move2, p2.mark)
+  
   puts "#{p2.name} has selected #{move2}"
   print game.board
 
@@ -72,5 +91,5 @@ while game
     # change game to false
     break
   end
-  game = false
+  
 end
