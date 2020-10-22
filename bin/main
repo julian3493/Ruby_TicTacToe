@@ -1,58 +1,14 @@
 #!/usr/bin/env ruby
 
-class Player
-  attr_accessor :valid
-  attr_reader :name, :mark
-  def initialize(name, mark)
-    @name = name
-    @mark = mark
-    @valid = false
-  end
-end
+require_relative '../lib/players.rb'
+require_relative '../lib/game.rb'
 
-class Game
-  attr_accessor :game_on
-  attr_reader :board, :winner, :draw
-  def initialize
-    @game_on = true
-    @winner = false
-    @draw = false
-    @board = %w[1 2 3 4 5 6 7 8 9]
-  end
-  def getMove(move, mark)
-    if board.any? { |n| move } && move.to_i != 0
-      board[move.to_i - 1] = mark
-      true
-    else
-      false
-    end
-  end
-
-  def is_winner
-    if board[0] == board[1] && board[1] == board[2] || board[3] == board[4] && board[4] == board[5]
-      @winner = true
-    elsif board[6] == board[7] && board[7] == board[8] || board[0] == board[4] && board[4] == board[8]
-      @winner = true
-    elsif board[2] == board[4] && board[4] == board[6] || board[0] == board[3] && board[3] == board[6]
-      @winner = true
-    elsif board[1] == board[4] && board[4] == board[7] || board[2] == board[5] && board[5] == board[8]
-      @winner = true
-    end
-  end
-
-  def is_draw
-    if board.all? { |space| space=="X" or space=="O" }
-      @draw = true
-    end
-  end
-end
-
-def printBoard(arr)
-  puts " "
+def print_board(arr)
+  puts ' '
   puts "| #{arr[0]} || #{arr[1]} || #{arr[2]} |"
   puts "| #{arr[3]} || #{arr[4]} || #{arr[5]} |"
   puts "| #{arr[6]} || #{arr[7]} || #{arr[8]} |"
-  puts " "
+  puts ' '
 end
 
 play_again = true
@@ -64,26 +20,29 @@ while play_again
   puts 'Player 2 please write your name'
   p2_name = gets.chomp
 
-  p1 = Player.new(p1_name, "X")
-  p2 = Player.new(p2_name, "O")
+  p1 = Player.new(p1_name, 'X')
+  p2 = Player.new(p2_name, 'O')
   game = Game.new
   puts "#{p1.name} is X and #{p2.name} is O"
   while game.game_on
-    printBoard(game.board)
+    print_board(game.board)
+
     while p1.valid == false
       puts "#{p1.name} it's your turn please choose a valid space"
       move1 = gets.chomp
       p1.valid = game.getMove(move1, p1.mark)
       p2.valid = false
     end
+
     puts "#{p1.name} has selected #{move1}"
-    printBoard(game.board)
+    print_board(game.board)
 
     if game.is_winner
       puts "#{p1.name} is the winner"
       @game_on = false
       break
     end
+
     if game.is_draw
       puts "It's a draw"
       game.game_on = false
@@ -96,6 +55,7 @@ while play_again
       p2.valid = game.getMove(move2, p2.mark)
       p1.valid = false
     end
+
     while move1 == move2
       puts "#{p2.name} it's your turn please choose a valid space other than #{move1}"
       move2 = gets.chomp
@@ -103,20 +63,21 @@ while play_again
     end
 
     puts "#{p2.name} has selected #{move2}"
-    printBoard(game.board)
+    print_board(game.board)
 
     if game.is_winner
       puts "#{p2.name} is the winner"
       @game_on = false
       break
     end
+
     if game.is_draw
       puts "It's a draw"
       game.game_on = false
       break
     end
   end
-  puts "Do you want to play again? y:Yes n:No"
+  puts 'Do you want to play again? y:Yes n:No'
   p_again = gets.chomp
   if p_again == 'y'
     play_again = true
