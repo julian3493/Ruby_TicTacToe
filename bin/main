@@ -12,9 +12,9 @@ draw = false
 while game
   puts "#{p1} is X and #{p2} is O"
   board = %w[1 2 3 4 5 6 7 8 9]
-  puts "| 1 || 2 || 3 |"
-  puts "| 4 || 5 || 6 |"
-  puts "| 7 || 8 || 9 |"
+  puts '| 1 || 2 || 3 |'
+  puts '| 4 || 5 || 6 |'
+  puts '| 7 || 8 || 9 |'
 
   puts "#{p1} it's your turn please choose a valid space"
   move1 = gets.chomp.to_i
@@ -22,9 +22,9 @@ while game
   board[move1 - 1] = 'X'
 
   puts "#{p1} has selected #{move1}"
-  puts "| 1 || 2 || 3 |"
-  puts "| 4 || 5 || 6 |"
-  puts "| 7 || 8 || 9 |"
+  puts '| 1 || 2 || 3 |'
+  puts '| 4 || 5 || 6 |'
+  puts '| 7 || 8 || 9 |'
 
   if winner
     puts "#{p1} is the winner"
@@ -47,9 +47,9 @@ while game
   board[move2 - 1] = 'O'
 
   puts "#{p2} has selected #{move2}"
-  puts "| 1 || 2 || 3 |"
-  puts "| 4 || 5 || 6 |"
-  puts "| 7 || 8 || 9 |"
+  puts '| 1 || 2 || 3 |'
+  puts '| 4 || 5 || 6 |'
+  puts '| 7 || 8 || 9 |'
 
   if winner
     puts "#{p1} is the winner"
