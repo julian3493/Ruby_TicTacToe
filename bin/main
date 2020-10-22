@@ -1,28 +1,41 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env 
 
+class Player
+  attr_reader :name, :mark
+  def initialize(name, mark)
+    @name = name
+    @mark = mark
+  end
+end
 game = true
 winner = false
 
 puts 'Player 1 please write your name'
-p1 = gets.chomp
+p1_name = gets.chomp
+p1= Player.new(p1_name, "X")
 puts 'Player 2 please write your name'
-p2 = gets.chomp
-
+p2_name = gets.chomp
+p2= Player.new(p2_name, "X")
 while game
-  puts "#{p1} is X and #{p2} is O"
+  puts "#{p1.name} is X and #{p2.name} is O"
   board = %w[1 2 3 4 5 6 7 8 9]
   print board
 
-  puts "#{p1} it's your turn please choose a valid space"
+  puts "#{p1.name} it's your turn please choose a valid space"
   move1 = gets.chomp.to_i
 
   board[move1 - 1] = 'X'
 
-  puts "#{p1} has selected #{move1}"
+  puts "#{p1.name} has selected #{move1}"
   print board
 
   if winner
     puts "#{p1} is the winner"
+    # change game to false
+    break
+  end
+  if draw
+    puts "It's a draw"
     # change game to false
     break
   end
@@ -41,6 +54,11 @@ while game
 
   if winner
     puts "#{p1} is the winner"
+    # change game to false
+    break
+  end
+  if draw
+    puts "It's a draw"
     # change game to false
     break
   end
