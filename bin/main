@@ -15,12 +15,34 @@ play_again = true
 
 while play_again
   puts 'Welcome to Tic Tac Toe'
-  puts 'Player 1 please write your name'
-  p1_name = gets.chomp
-  puts 'Player 2 please write your name'
-  p2_name = gets.chomp
 
-  p1 = Player.new(p1_name, 'X')
+  name_one = true
+  name_two = true
+
+  while name_one
+    puts 'Player 1 please write your name'
+    begin
+      p1_name = gets.chomp.match('[a-zA-Z]+.*').string
+    rescue StandardError
+      puts 'Please do not use numbers but only characters A-Z and a-z'
+    else
+      p1 = Player.new(p1_name, 'X')
+      name_one = false
+    end
+  end
+
+  while name_two
+    puts 'Player 2 please write your name'
+    begin
+      p2_name = gets.chomp.match('[a-zA-Z]+.*').string
+    rescue StandardError
+      puts 'Please do not use numbers but only characters A-Z and a-z'
+    else
+      p2 = Player.new(p2_name, 'O')
+      name_two = false
+    end
+  end
+
   p2 = Player.new(p2_name, 'O')
   game = Game.new
   puts "#{p1.name} is X and #{p2.name} is O"
@@ -66,13 +88,13 @@ while play_again
       break
     end
 
-    if game.draw?
-      puts "It's a draw"
-      game.game_on = false
-      break
-    end
+    next unless game.draw?
+
+    puts "It's a draw"
+    game.game_on = false
+    next
   end
-  puts 'Do you want to play again? y:Yes n:No'
+  puts "Do you want to play again? PRESS 'y' to continue with the game or any other key to quit"
   p_again = gets.chomp
   if p_again == 'y'
     play_again = true
