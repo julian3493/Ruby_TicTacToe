@@ -20,9 +20,13 @@
 
 ### Setup
 
-- Clone the repository to your computer. Use `git clone (add the clone path)`, then open the terminal from within the bin folder. OR
-- You download the zip file containing the repository files, then open the terminal from within the bin folder.
-- In the terminal, type `main` and press enter, the game will then initialize.
+- Clone the repository to your computer in your desired location, then open the terminal.
+  -- Use `$ git clone https://github.com/julian3493/Ruby_TicTacToe.git`.  OR
+- Download the zip file containing the repository files.
+- Then open the terminal from within the bin folder from the Ruby_TicTacToe folder.
+  -- Type `$ cd Ruby_TicTacToe` and then
+  -- `$ cd bin` from the terminal.
+- In the terminal, type `$ main` and press enter, the game will then initialize.
 
 ## Game Instructions
 
