@@ -1,38 +1,41 @@
-# Ruby_TicTacToe
+# TIC TAC TOE GAME
 
-> This project is Tic Tac Toe game using RUBY
+> This project is Tic Tac Toe game using RUBY classes, input validation, and object tracking (player moves)
 
-## Instructions
+
 
 ![screenshot](./img/Screenshot_1.png)
 
 
-- Tic Tac Toe is a game for 2 player who take turns marking the spaces in a 3×3 grid.
-- A player wins when puts 3 marks in the same horizontal, vertical or diagonal line.
-- When you start the game it will ask you the players names , please use only letters and don't leave empty name.
-- The player 1 will use "X" as mark and always go first, the player 2 will use "O" as mark.
-- You could choose numbers from 1 to 9 to select a space in the board.
-- After each move you could see a message with your move selected, and the board updated with your mark.
-- If you try to choose a invalid space, the game will ask you again to make your move.
-- The game finish when there is a winner or when there is no more spaces available in this case there is a draw.
-- When the game finish it will ask you if want to play again, you can press "y" if want to play again or put anything else if want to finish.
-
 ## Built With
 
 - Ruby
+- Rubocop Linter
 
 ### Prerequisites
 
 - Computer
-- Code Editor of your choice
-- Ruby Installed
+- Terminal -- any terminal will work just fine.
+- Ruby Installed -- version 2.4.X and above
 
 ### Setup
 
-- Clone the repository to your computer, or you download the zip file containing the repository files.
-- Open the file "main" with your code editor to see the code.
-- Run the "main" in the terminal using the command "main" to start the game.
-- Remember you must be in the /bin folder into the repo folder you could move there using the command "cd bin".
+- Clone the repository to your computer. Use `git clone (add the clone path)`, then open the terminal from within the bin folder. OR
+- You download the zip file containing the repository files, then open the terminal from within the bin folder.
+- In the terminal, type `main` and press enter, the game will then initialize.
+
+## Game Instructions
+
+- Tic Tac Toe is a game for 2 players who take turns marking the spaces in a 3×3 grid.
+- A player wins on putting 3 marks in the same horizontal, vertical or diagonal line.
+- When you start the game it will ask you the players' names , PLEASE USE ONLY THE ALPHABETS (A-Za-z) AND NOT NUMBERS.
+- The player 1 will use "X" as their mark and always go first, the player 2 will use "O" as their mark.
+- You MUST choose numbers from 1 to 9 to select a space on the board.
+- After each move you will see a message with your move selected, and the board will be updated with your mark.
+- If you try to choose an invalid space, the game will ask you go again to make your move.
+- The game will end when there is a winner or when there is no more spaces available in this case there is a draw.
+- When the game is ended. It will ask you if want you to play again, PRESS "y" if want to play again or PRESS any key if you want to end the game.
+- Enjoy the GAME.
 
 
 ## Authors
@@ -50,9 +53,13 @@
 - Twitter: [@Roymkenya](https://twitter.com/Roymkenya)
 - LinkedIn: [Roy Mukuye](https://www.linkedin.com/in/roy-mukuye-42b07b1b4)
 
+## Future Features
+
+* Play against computer
+
 
 ## Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/julian3493/Ruby-Enumerable-Methods/issues).
+Feel free to check the [issues page](https://github.com/julian3493/Ruby_TicTacToe/issue).
