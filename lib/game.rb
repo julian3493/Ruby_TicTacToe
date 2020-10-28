@@ -7,7 +7,7 @@ class Game
     @winner = false
     @draw = false
     @board = %w[1 2 3 4 5 6 7 8 9]
-    @winner_con = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+    @win_con = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
   end
 
   def get_move(move, mark)
@@ -20,9 +20,9 @@ class Game
   end
 
   def winner?
-    if @winner_con.any? { |con| con.all? { |spc| board[spc] == 'X' } || con.all? { |spc| board[spc] == 'O' } }
-      @winner = true
-    end
+    return unless @win_con.any? { |con| con.all? { |spc| board[spc] == 'X' } || @con.all? { |spc| board[spc] == 'O' } }
+    
+    @winner = true
   end
 
   def draw?
