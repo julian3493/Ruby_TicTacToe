@@ -21,6 +21,7 @@ class Game
 
   def winner?
     return unless @win_con.any? { |con| con.all? { |spc| board[spc] == 'X' } || @con.all? { |spc| board[spc] == 'O' } }
+
     @winner = true
   end
 
