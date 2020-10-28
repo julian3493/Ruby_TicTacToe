@@ -59,6 +59,26 @@
 - Twitter: [@Roymkenya](https://twitter.com/Roymkenya)
 - LinkedIn: [Roy Mukuye](https://www.linkedin.com/in/roy-mukuye-42b07b1b4)
 
+## Test Authors
+
+👤 **Julian Ramos**
+
+- GitHub: [@julian3493](https://github.com/julian3493)
+- Twitter: [@JulianR16893833](https://twitter.com/JulianR16893833)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/juli%C3%A1n-ricardo-ramos-arevalo-3868ba135/)
+
+
+👤 **Andjela Vukadinovic**
+
+GitHub: @githubhandle
+Twitter: @twitterhandle
+LinkedIn: linkedin
+
+- GitHub: [@githubhandle](https://github.com/410AngelaVu)
+- Twitter: [@twitterhandle](https://twitter.com/vukadinov7)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/andjela-vukadinovic-67a21b1b2/)
+
+
 ## Future Features
 
 * Play against computer
